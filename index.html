@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+	$(function () {
+		var socket = io('http://localhost:5002');
+
+		socket.on('start', function (data) {
+			console.log('start data', data);
+			$('body').html($('<h1>', {text : data.text}));
+		});
+
+		socket.on('send', function (data) {
+			console.log('send data', data);
+			$('body').append($('<div>', {text : data.text}))
+		});
+	});
+</script>
+
+<body></body>
+</html>
