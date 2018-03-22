@@ -1,12 +1,17 @@
 let express     = require('express');
-let clientRedis = require('./redis-client');
 let port        = 5001;
 let router      = express.Router({ strict: true });
 let app         = express();
 let http        = require('http').Server(app);
+let redisPub    = require('./redis-publisher');
 
 app.get('/send', (req, res) => {
-	clientRedis.set('send', 'New Message ' +Date.now());
+	['scaner', 'scaner2'].map(channel => {
+		redisPub.channelOpen(channel);
+		redisPub.channelPublish(channel, 'Hello world!');
+		redisPub.channelPublish(channel, 'Hello again!');
+	});
+
 	res.send(`New send gone`);
 });
 
