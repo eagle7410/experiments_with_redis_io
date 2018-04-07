@@ -21,4 +21,4 @@ io.on('connection', function (socket) {
 
 });
 
-http.listen(port, () => console.log(`Server run in port -> ${port}`));
+http.listen(port, () => console.log(`Server run in port -> http://localhost:${port}`));

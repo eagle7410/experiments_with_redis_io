@@ -17,4 +17,4 @@ app.get('/send', (req, res) => {
 
 router.get('/', (req, res) => res.send(`This is port ${port}!`));
 
-http.listen(port, () => console.log(`Server run in port -> ${port}`));
+http.listen(port, () => console.log(`Server run in port -> http://localhost:${port}`));
